@@ -72,7 +72,7 @@ exports.obtenerTareas = async (req, res) => {
 exports.actualizarTarea = async (req, res) => {
 
     //Extraer el proyecto
-    const { proyecto, nombre, estado } = req.body;
+    const { proyecto, nombre, estado, finalizado } = req.body;
 
     try{
 
@@ -96,6 +96,7 @@ exports.actualizarTarea = async (req, res) => {
 
         nuevaTarea.nombre = nombre;
         nuevaTarea.estado = estado;
+        nuevaTarea.finalizado = finalizado;
 
         //Guardar la tarea
         tarea = await Tarea.findOneAndUpdate({_id : req.params.id}, nuevaTarea, { new: true});
